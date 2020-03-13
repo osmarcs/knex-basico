@@ -1,0 +1,11 @@
+{
+  "name": "knex-basico",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Osmar <osmar.costa.s@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.20.11",
+    "mysql": "^2.18.1"
+  }
+}
