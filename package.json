@@ -5,6 +5,7 @@
   "author": "Osmar <osmar.costa.s@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "knex": "^0.20.11",
     "mysql": "^2.18.1"
   }
