@@ -1,10 +1,10 @@
 type Usuario {
-  id: ID!
-  nome: String!
-  email: String!
-  ativo: Boolean!
+  id: ID
+  nome: String
+  email: String
+  ativo: Boolean
   data_criacao: Date
-  perfil: [Perfil]
+  perfis: [Perfil]
 }
 
 
