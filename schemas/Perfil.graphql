@@ -2,6 +2,7 @@ type Perfil {
   id: ID
   nome: String
   rotulo: String
+  usuarios: [Usuario]
 }
 
 input PerfilFiltro {
