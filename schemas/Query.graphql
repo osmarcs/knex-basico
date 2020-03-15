@@ -1,0 +1,8 @@
+type Query {
+  perfis: [Perfil]
+  perfil(filtro: PerfilFiltro): Perfil
+
+  usuarios: [Usuario]
+  usuario(filtro: UsuarioFiltro): Usuario
+
+}

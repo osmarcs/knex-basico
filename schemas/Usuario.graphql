@@ -1,0 +1,21 @@
+type Usuario {
+  id: ID!
+  nome: String!
+  email: String!
+  ativo: Boolean!
+  data_criacao: Date
+  perfil: [Perfil]
+}
+
+
+input UsuarioFiltro {
+  id: ID
+  email: String
+}
+
+input UsuarioInput {
+  nome: String
+  email: String
+  senha: String
+  perfis: [PerfilFiltro]
+}

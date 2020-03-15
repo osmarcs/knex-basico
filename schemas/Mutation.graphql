@@ -1,0 +1,9 @@
+type Mutation {
+  adicionarUsuario(dados: UsuarioInput): Usuario
+  alterarUsuario(filtro: UsuarioFiltro, dados: UsuarioInput): Usuario
+  deletarUsuario(filtro: UsuarioFiltro): Usuario
+
+  adicionarPerfil(dados: PerfilInput): Perfil
+  alterarPerfil(filtro: PerfilFiltro, dados: PerfilInput): Perfil
+  deletarPerfil(filtro: PerfilFiltro): Perfil
+}
