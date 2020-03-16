@@ -1,19 +1,46 @@
+const bcrypt = require('bcrypt');
 const db = require('../../config/database');
 const { perfil: obterPerfil } = require('../Query/perfis');
 const { usuario: obterUsuario } = require('../Query/usuarios');
 
-module.exports = {
+async function isEmailDisponivel(email) {
+  const usuario = db('usuarios').where({ email }).first();
+  return !usuario;
+}
+
+const mutations = {
+
+  registrarUsuario(_, { dados }) {
+    return mutations.adicionarUsuario(_, {
+      dados: {
+        nome: dados.nome,
+        senha: dados.senha,
+        email: dados.email
+      }
+    })
+  },
+
   async adicionarUsuario(_, { dados }) {
     const perfis_id = [];
     try {
-      if (dados.perfis) {
-        for ( let  { _,  ...filtro } of dados.perfis ) {
-          const perfil = await obterPerfil(_, { filtro });
-          if (perfil) {
-            perfis_id.push(perfil.id);
+
+      if(!dados.perfis || !dados.perfis.length) {
+        dados.perfis = [
+          {
+            nome: 'comum'
           }
+        ]
+      }
+
+      for (let filtro of dados.perfis ) {
+        const perfil = await obterPerfil(_, { filtro });
+        if (perfil) {
+          perfis_id.push(perfil.id);
         }
       }
+
+      const salt = bcrypt.genSaltSync();
+      dados.senha = bcrypt.hashSync(dados.senha, salt);
 
       delete dados.perfis;
       const [ id ] = await db('usuarios').insert(dados);
@@ -45,6 +72,12 @@ module.exports = {
           }
         }
       }
+
+      if (dados.senha) {
+        const salt = bcrypt.genSaltSync();
+        dados.senha = bcrypt.hashSync(dados.senha, salt);
+      }
+
       delete dados.perfis;
       await db('usuarios').where({ id: usuario.id }).update(dados);
       return { ...usuario, ...dados};
@@ -68,3 +101,5 @@ module.exports = {
     }
   }
 }
+
+module.exports = mutations;

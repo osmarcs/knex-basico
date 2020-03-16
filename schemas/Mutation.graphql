@@ -1,4 +1,5 @@
 type Mutation {
+  registrarUsuario(dados: UsuarioRegistrarInput!): Usuario!
   adicionarUsuario(dados: UsuarioInput): Usuario
   alterarUsuario(filtro: UsuarioFiltro, dados: UsuarioInput): Usuario
   deletarUsuario(filtro: UsuarioFiltro): Usuario

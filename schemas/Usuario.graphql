@@ -19,3 +19,9 @@ input UsuarioInput {
   senha: String
   perfis: [PerfilFiltro]
 }
+
+input UsuarioRegistrarInput {
+  nome: String
+  email: String
+  senha: String
+}
