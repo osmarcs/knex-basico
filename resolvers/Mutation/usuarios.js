@@ -21,6 +21,7 @@ const mutations = {
   },
 
   async adicionarUsuario(_, { dados }) {
+    console.log(dados);
     const perfis_id = [];
     try {
 

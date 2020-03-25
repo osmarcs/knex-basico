@@ -4,5 +4,6 @@ type Query {
 
   usuarios: [Usuario]
   usuario(filtro: UsuarioFiltro): Usuario
+  login(dados: UsuarioLoginInput!): Usuario
 
 }
