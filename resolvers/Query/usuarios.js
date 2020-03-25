@@ -5,16 +5,15 @@ const { getUsuarioLogado } = require('../comum/usuario');
 module.exports = {
 
   async login(_, { dados }) {
-    const prsDados = JSON.parse(JSON.stringify(dados));
     const usuario = await db('usuarios').where({
-      email: prsDados.email
+      email: dados.email
     }).first();
 
     if (!usuario) {
       throw Error('Usuario nao encontrado!')
     }
 
-    const saoIguais = bcrypt.compareSync(prsDados.senha, usuario.senha);
+    const saoIguais = bcrypt.compareSync(dados.senha, usuario.senha);
     if(!saoIguais) {
       throw Error('Senha invalida ')
     }
